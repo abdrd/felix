@@ -1,8 +1,6 @@
-import File from "./File";
-
 class Todo {
   text: string;
-  constructor(file: File, text: string) {
+  constructor(text: string) {
     this.text = text;
   }
 }

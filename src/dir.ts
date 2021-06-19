@@ -17,7 +17,7 @@ export const getAllItems = (
 ): dirTree.DirectoryTree[] => {
   const tree = dirTree(path);
   if (typeof tree.children !== "undefined") {
-    return tree.children.filter((val, idx) => val.type === type);
+    return tree.children.filter((val) => val.type === type);
   }
   return [];
 };
