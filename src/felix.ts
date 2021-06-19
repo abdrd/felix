@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 import { getAllItems, DirChildrenType } from "./dir";
-import { Config, AVAILABLE_FLAGS } from "./flags";
+import { Config } from "./flags";
 import { VERSION, PROGRAM, USAGE } from "./constants";
 import { parseTodos } from "./parseTodos";
+import File from "./File";
+import Todo from "./Todo";
 
 const main = () => {
   const args = process.argv.slice(2, process.argv.length);
@@ -42,8 +44,19 @@ const main = () => {
   if (PROGRAM_CONFIG.printVersion) console.log(VERSION);
 
   const files = getAllItems(DirChildrenType.File, PROGRAM_CONFIG.root);
+  /*
+  for (const file of files) {
+    const newFile: File = new File(file.path, file.name)
+    const todos: Todo[] = parseTodos(newFile.path)
+    newFile.setTodos(todos)
+  }
+*/
 
-  // ...
+  parseTodos("./src/dir.ts");
+  // create a file - todo relationship here
+  // parse todos and create new todo instances every time
+  // assign todos to a file
+  // get them here
 };
 
 main();

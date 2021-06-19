@@ -1,6 +1,6 @@
-import fs, { Dir } from "fs";
 import dirTree from "directory-tree";
 
+// TODO this this that
 export enum DirChildrenType {
   Directory = "directory",
   File = "file",
@@ -13,8 +13,10 @@ export enum DirChildrenType {
  */
 export const getAllItems = (
   type: DirChildrenType,
+  // TODO HELLO GUYS
   path: string
 ): dirTree.DirectoryTree[] => {
+  // TODO test test test ::D WOOHOO
   const tree = dirTree(path);
   if (typeof tree.children !== "undefined") {
     return tree.children.filter((val) => val.type === type);
