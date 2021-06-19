@@ -6,7 +6,7 @@ import { parseTodos } from "./parseTodos";
 import File from "./File";
 import Todo from "./Todo";
 
-const main = () => {
+const Felix = () => {
   const args = process.argv.slice(2, process.argv.length);
   let PROGRAM_CONFIG: Config = {
     printVersion: false,
@@ -59,4 +59,4 @@ const main = () => {
   // get them here
 };
 
-main();
+Felix();
