@@ -6,10 +6,10 @@
 
 ## USAGE
 ***
-felix                                   -> parse todos in the current directory
-felix [-p, --path <relative-path>]      -> parse todos in the specified path
-felix [-v, --version]                   -> get the version number
-felix [-h, --help]                      -> get help
+* felix                                   -> parse todos in the current directory
+* felix [-p, --path <relative-path>]      -> parse todos in the specified path
+* felix [-v, --version]                   -> get the version number
+* felix [-h, --help]                      -> get help
 
 *Felix* can parse code with C-like syntax. (// for comments)
 
