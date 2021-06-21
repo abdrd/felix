@@ -12,7 +12,6 @@
 |felix -p, --path <relative-path> | parse todos in the specified path|
 |felix -v, --version| get the version number|
 |felix -h, --help| get help|
-|------|-----------|
 
 ***
 
