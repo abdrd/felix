@@ -5,7 +5,7 @@
 *Felix* traverses through files and parses your TODO comments.
 
 ## USAGE
-***
+
 |syntax|description|
 |------|-----------|
 |felix | parse todos in the current directory|
