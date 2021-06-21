@@ -1,5 +1,8 @@
 # FELIX
 ### A command-line tool to gather all your todos in a single file
+
+```npm i felixx```
+[felixx - npm](https://www.npmjs.com/package/felixx)
 ***
 
 *Felix* traverses through files and parses your TODO comments.
