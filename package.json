@@ -4,7 +4,8 @@
   "description": "A command-line tool to gather all your todos together.",
   "main": "dist/felix.js",
   "scripts": {
-    "start": "tsc && npm i -g . && felix"
+    "start": "tsc && npm i -g . && felix",
+    "test": "npm start && felix -p ./test"
   },
   "keywords": [
     "cli",

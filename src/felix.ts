@@ -1,23 +1,16 @@
 #!/usr/bin/env node
-import { getAllItems, DirChildrenType } from "./dir";
 import { Config } from "./flags";
-import { VERSION, PROGRAM, USAGE } from "./constants";
-import { parseTodos } from "./parseTodos";
-import File from "./File";
-import Todo from "./Todo";
+import { VERSION, USAGE, OUTPUT_FILE_NAME } from "./constants";
+import { rangeAllFiles } from "./range";
+import { appendFileSync, writeFileSync } from "fs";
 
 const Felix = () => {
   const args = process.argv.slice(2, process.argv.length);
   let PROGRAM_CONFIG: Config = {
     printVersion: false,
     printHelp: false,
-    root: "./",
+    root: ".",
   };
-
-  if (args.length === 0) {
-    console.log(USAGE);
-    return;
-  }
 
   for (const arg of args) {
     switch (arg) {
@@ -39,24 +32,27 @@ const Felix = () => {
         break;
     }
   }
-
+  
   if (PROGRAM_CONFIG.printHelp) console.log(USAGE);
   if (PROGRAM_CONFIG.printVersion) console.log(VERSION);
 
-  const files = getAllItems(DirChildrenType.File, PROGRAM_CONFIG.root);
-  /*
-  for (const file of files) {
-    const newFile: File = new File(file.path, file.name)
-    const todos: Todo[] = parseTodos(newFile.path)
-    newFile.setTodos(todos)
+  const results = rangeAllFiles(PROGRAM_CONFIG.root)
+  
+  // output todos
+  const output = []
+  for (const result of results) {
+    if (result.todos.length > 0) {
+      output.push("\n" + result.path + "\n" + result.todos.map(todo => "\t" + todo.text).join("\n"))
+    }
   }
-*/
 
-  parseTodos("./src/dir.ts");
-  // create a file - todo relationship here
-  // parse todos and create new todo instances every time
-  // assign todos to a file
-  // get them here
+  // create the TODO file 
+  writeFileSync(OUTPUT_FILE_NAME, "")
+
+  // ouput to the TODO file
+  for (const out of output) {
+    appendFileSync(OUTPUT_FILE_NAME, out)
+  }
 };
 
 Felix();

@@ -1,32 +1,19 @@
-import { readFile, readFileSync } from "fs";
+import { readFileSync } from "fs";
 import Todo from "./Todo";
+import File from "./File"
 
-export const parseTodos = (pathToFile: string) => {
-  // match  // TODO ...
-  const todoRegex: RegExp = /(?<=\/\/ )TODO(?= \w+)[\sA-Za-z0-9].+/g;
-  const fileContent = readFileSync(pathToFile, "utf-8");
+export const parseTodos = (file: File): File => {
+  const todoRegex: RegExp = /(?<=\/\/\s?)(TODO|todo)(?= \w+)[\sA-Za-z0-9].+/g;
+  const fileContent = readFileSync(file.path, "utf-8");
 
   const matches = fileContent.match(todoRegex);
 
-  console.log(matches);
-
-  // TODO read the file and match  NOT THE TEST STRING
-
-  //if (matches !== null) const todo = new Todo(matches[0]);
-
-  // make a new Todo instance everytime
-  // make a new File instance with its todos
-  /**
-   * return format:
-   * [
-   *   {
-   *    fileName: ...,
-   *    todos: [
-   *      {
-   *        todoText: ...
-   *      }
-   *    ]
-   *   }
-   * ]
-   */
+  if (matches !== null) {
+    matches?.forEach(match => {
+      const todo = new Todo(match)
+      file.todos.push(todo)
+    })
+  }
+  
+  return file
 };
