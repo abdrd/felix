@@ -1,10 +1,10 @@
-#FELIX
+# FELIX
 ### A command-line tool to gather all your todos in a single file
 ***
 
 *Felix* traverses through files and parses your TODO comments.
 
-##USAGE
+## USAGE
 ***
 felix                                   -> parse todos in the current directory
 felix [-p, --path <relative-path>]      -> parse todos in the specified path
