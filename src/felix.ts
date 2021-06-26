@@ -16,7 +16,6 @@ const Felix = () => {
         printHelp: false,
         root: "./",
         outputPath: "./",
-        clean: false,
     }
 
     for (const arg of args) {

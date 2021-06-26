@@ -3,5 +3,4 @@ export type Config = {
     printHelp: boolean
     root: string
     outputPath: string
-    clean: boolean
 }
