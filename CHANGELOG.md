@@ -7,6 +7,11 @@
     You can now specify the output location
     Added Python support
 
+## v1.1.1
+
+    Fix README.md
+    Fix package.json LICENSE
+
 ## v.2.1.0
 
     Big features coming... :)
