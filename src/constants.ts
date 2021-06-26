@@ -2,7 +2,7 @@ import chalk from "chalk"
 
 export const PROGRAM = "felix"
 export const VERSION = process.env.FELIX_VERSION || "1.1.0"
-export const OUTPUT_FILE_NAME = "TODO"
+export const OUTPUT_FILE_NAME = "TOO"
 export const USAGE = chalk.yellow.bold(`
                                                                            
         USAGE:                                                             
