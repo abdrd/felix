@@ -9,7 +9,7 @@ export const USAGE = chalk.yellow.bold(`
             felix  -p | --path <relative-path>                             
             -v      --version                    -> get felix version                       
             -h      --help                       -> get help 
-            -op     --output <output-directory   -> set output path                             
+            -op     --output-path <output-directory   -> set output path                             
                                                                            `)
 
 export const OUTPUT_PATH_ERROR = chalk.red.bold(

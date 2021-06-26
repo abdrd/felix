@@ -16,7 +16,7 @@ _Felix_ traverses through files and parses your TODO comments.
 | felix -p, --path <relative-path>    | parse todos in the specified path    |
 | felix -v, --version                 | get the version number               |
 | felix -h, --help                    | get help                             |
-| felix -op, --output <relative-path> | output to the specified path         |
+| felix -op, --output-path <relative-path> | output to the specified path         |
 
 
 _Felix_ can parse C-like comments and Python comments.
