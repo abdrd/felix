@@ -1,25 +1,25 @@
 {
-  "name": "felixx",
-  "version": "1.0.0",
-  "description": "A command-line tool to gather all your todos together.",
-  "main": "dist/felix.js",
-  "scripts": {
-    "start": "tsc && npm i -g . && felix",
-    "test": "npm start && felix -p ./test"
-  },
-  "keywords": [
-    "cli",
-    "todo"
-  ],
-  "bin": {
-    "felix": "./dist/felix.js"
-  },
-  "author": "github.com/betelgeuse-7",
-  "license": "ISC",
-  "dependencies": {
-    "@types/node": "^15.12.4",
-    "chalk": "^4.1.1",
-    "directory-tree": "^2.2.9"
-  },
-  "types": "dist/felix.d.ts"
+    "name": "felixx",
+    "version": "1.1.0",
+    "description": "A command-line tool to gather all your todos together.",
+    "main": "dist/felix.js",
+    "scripts": {
+        "start": "tsc && npm i -g .",
+        "test": "npm start && felix -p ./test"
+    },
+    "keywords": [
+        "cli",
+        "todo"
+    ],
+    "bin": {
+        "felix": "./dist/felix.js"
+    },
+    "author": "github.com/betelgeuse-7",
+    "license": "ISC",
+    "dependencies": {
+        "@types/node": "^15.12.4",
+        "chalk": "^4.1.1",
+        "directory-tree": "^2.2.9"
+    },
+    "types": "dist/felix.d.ts"
 }

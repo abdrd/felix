@@ -1,58 +1,88 @@
 #!/usr/bin/env node
-import { Config } from "./flags";
-import { VERSION, USAGE, OUTPUT_FILE_NAME } from "./constants";
-import { rangeAllFiles } from "./range";
-import { appendFileSync, writeFileSync } from "fs";
+import { Config } from "./Config"
+import {
+    VERSION,
+    USAGE,
+    OUTPUT_FILE_NAME,
+    OUTPUT_PATH_ERROR,
+} from "./constants"
+import { rangeAllFiles } from "./helpers"
+import { appendFileSync, writeFileSync } from "fs"
 
 const Felix = () => {
-  const args = process.argv.slice(2, process.argv.length);
-  let PROGRAM_CONFIG: Config = {
-    printVersion: false,
-    printHelp: false,
-    root: ".",
-  };
-
-  for (const arg of args) {
-    switch (arg) {
-      case "-h":
-      case "--help":
-        PROGRAM_CONFIG.printHelp = true;
-        break;
-      case "-v":
-      case "--version":
-        PROGRAM_CONFIG.printVersion = true;
-        break;
-      case "-p":
-      case "--path":
-        // get the path
-        PROGRAM_CONFIG.root = process.argv.slice(
-          process.argv.indexOf(arg),
-          process.argv.indexOf(arg) + 2
-        )[1];
-        break;
+    const args = process.argv.slice(2, process.argv.length)
+    let PROGRAM_CONFIG: Config = {
+        printVersion: false,
+        printHelp: false,
+        root: "./",
+        outputPath: "./",
+        clean: false,
     }
-  }
-  
-  if (PROGRAM_CONFIG.printHelp) console.log(USAGE);
-  if (PROGRAM_CONFIG.printVersion) console.log(VERSION);
 
-  const results = rangeAllFiles(PROGRAM_CONFIG.root)
-  
-  // output todos
-  const output = []
-  for (const result of results) {
-    if (result.todos.length > 0) {
-      output.push("\n" + result.path + "\n" + result.todos.map(todo => "\t" + todo.text).join("\n"))
+    for (const arg of args) {
+        const ARG_PATH = process.argv.slice(
+            process.argv.indexOf(arg),
+            process.argv.indexOf(arg) + 2
+        )[1]
+
+        switch (arg) {
+            case "-h":
+            case "--help":
+                PROGRAM_CONFIG.printHelp = true
+                break
+            case "-v":
+            case "--version":
+                PROGRAM_CONFIG.printVersion = true
+                break
+            case "-p":
+            case "--path":
+                // get the path
+                PROGRAM_CONFIG.root = ARG_PATH
+                break
+            case "-op":
+            case "--output-path":
+                PROGRAM_CONFIG.outputPath = ARG_PATH
+        }
     }
-  }
 
-  // create the TODO file 
-  writeFileSync(OUTPUT_FILE_NAME, "")
+    if (PROGRAM_CONFIG.printHelp) {
+        console.log(USAGE)
+        return
+    }
+    if (PROGRAM_CONFIG.printVersion) {
+        console.log(VERSION)
+        return
+    }
 
-  // ouput to the TODO file
-  for (const out of output) {
-    appendFileSync(OUTPUT_FILE_NAME, out)
-  }
-};
+    const results = rangeAllFiles(PROGRAM_CONFIG.root)
 
-Felix();
+    // output todos
+    const output = []
+    for (const result of results) {
+        if (result.todos.length > 0) {
+            output.push(
+                "\n" +
+                    result.path +
+                    "\n" +
+                    result.todos.map(todo => "\t" + todo.text).join("\n")
+            )
+        }
+    }
+
+    // go to the output directory
+    try {
+        process.chdir(PROGRAM_CONFIG.outputPath)
+    } catch (e) {
+        console.log(OUTPUT_PATH_ERROR)
+    }
+
+    // create the TODO file
+    writeFileSync(OUTPUT_FILE_NAME, "")
+
+    // ouput to the TODO file
+    for (const out of output) {
+        appendFileSync(OUTPUT_FILE_NAME, out)
+    }
+}
+
+Felix()
