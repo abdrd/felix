@@ -11,7 +11,3 @@
 
     Fix README.md
     Fix package.json LICENSE
-
-## v.2.1.0
-
-    Big features coming... :)

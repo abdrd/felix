@@ -1,5 +1,6 @@
 class Todo {
-    text: string
+    readonly text: string
+
     constructor(text: string) {
         this.text = text
     }
